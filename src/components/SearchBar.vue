@@ -33,7 +33,7 @@
           </div>
           <div class="popup-footer">
             <button class="btn btn-outline-secondary btn-block text-gray" @click="hideAreas">Close</button>
-            <button class="btn btn-primary btn-block text-white" @click="hideAreas">Apply</button>
+            <button class="btn btn-block text-white apply-button" @click="hideAreas">Apply</button>
           </div>
         </div>
       </div>
@@ -44,17 +44,22 @@
           </div>
           <span class="popup-title mx-2">Choose one or more roles <span @click="hideRoles" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
           <div class="popup-content">
-            <select id="most-like" name="mostliked" class="form-options" required>
+            <select class="select-options" required>
               <option disabled="" selected="" value>All roles</option>
               <option>Accounting & Finance</option>
               <option>Customer Service</option>
               <option>Design</option>
               <option>International trade</option>
+              <option>Logistics and Transport</option>
+              <option>Marketing</option>
+              <option>Recruiting</option>
+              <option>Sales</option>
+              <option>Technology</option>
             </select>
           </div>
           <div class="popup-footer">
             <button class="btn btn-outline-secondary btn-block text-gray" @click="hideRoles">Close</button>
-            <button class="btn btn-block text-white" style="background-color: dodgerblue" @click="hideRoles">Apply</button>
+            <button class="btn btn-block text-white apply-button" @click="hideRoles">Apply</button>
           </div>
         </div>
       </div>
@@ -65,19 +70,24 @@
           </div>
           <span class="popup-title mx-2">Salary range <span @click="hideSalaries" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
           <div class="popup-content">
-            <select id="most-like" name="mostliked" class="form-options" required>
+            <select class="select-options" required>
               <option disabled="" selected="" value>Currency</option>
               <option>US Dollar</option>
               <option>Colombian Peso</option>
-              <option>Chilean Peso</option>
+              <option>Mexican Peso</option>
               <option>Argentinean Peso</option>
+              <option>Chilean Peso</option>
+              <option>Real Brasileiro</option>
+              <option>Euro</option>
             </select>
-            <input type="number" min="0" max="100000">
-            <input type="number" min="0" max="100000">
+            <div class="salary-options">
+              <input class="salary-input" type="number" min="0" max="100000" placeholder="Min">
+              <input class="salary-input" type="number" min="0" max="100000" placeholder="Max">
+            </div>
           </div>
           <div class="popup-footer">
             <button class="btn btn-outline-secondary btn-block text-gray" @click="hideSalaries">Close</button>
-            <button class="btn btn-block text-white" style="background-color: dodgerblue" @click="hideSalaries">Apply</button>
+            <button class="btn btn-block text-white apply-button" @click="hideSalaries">Apply</button>
           </div>
         </div>
       </div>
@@ -88,17 +98,20 @@
           </div>
           <span class="popup-title mx-2">Choose a location <span @click="hideLocations" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
           <div class="popup-content">
-            <select id="most-like" name="mostliked" class="form-options" required>
+            <select class="select-options" required>
               <option disabled="" selected="" value>Unselected</option>
-              <option>Bogota</option>
-              <option>Medellin</option>
+              <option>Bogotá</option>
+              <option>Medellín</option>
+              <option>Ciudad de México</option>
               <option>Buenos Aires</option>
+              <option>Santiago</option>
               <option>Rio de Janeiro</option>
+              <option>New York</option>
             </select>
           </div>
           <div class="popup-footer">
             <button class="btn btn-outline-secondary btn-block text-gray" @click="hideLocations">Close</button>
-            <button class="btn btn-block text-white" style="background-color: dodgerblue" @click="hideLocations">Apply</button>
+            <button class="btn btn-block text-white apply-button" @click="hideLocations">Apply</button>
           </div>
         </div>
       </div>
@@ -194,6 +207,7 @@ export default {
   background-image: url("@/assets/images/SearchBackground.png");
   background-size: cover;
   background-position: center;
+  padding-left: 16px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -235,11 +249,6 @@ export default {
   outline: none;
   border-radius: 2.5px;
   border: 2px solid black;
-}
-
-.navbar {
-  position: auto;
-  left: 24vw;
 }
 
 .navbar-nav {
@@ -293,7 +302,7 @@ export default {
   position: relative;
   z-index: 2;
   top: -55px;
-  right: -50px
+  right: -35px
 }
 
 .popup-close {
@@ -310,17 +319,60 @@ export default {
   flex-direction: column;
   text-align: left;
   color: black;
-  gap: 10px;
   width: 100%;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 16px;
+  padding-right: 16px;
   padding-top: 0px;
   padding-bottom: 16px;
   margin-top: -16px;
   margin-bottom: 12px;
-  margin-left: 12px;
+  margin-left: 16px;
+  margin-right: 16px;
   border-bottom: 1px solid #ccc;
-  line-height: 1.2;
+  line-height: 1.3;
+}
+
+.apply-button {
+  background-color: dodgerblue;
+}
+
+.apply-button:hover {
+  background-color: steelblue;
+}
+
+.input-checkbox {
+  margin-right: 6px;
+}
+
+.select-options {
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  height: 35px;
+  width: 100%;
+}
+
+.salary-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 24px;
+}
+
+.salary-input {
+  background-color: whitesmoke;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 220px;
+}
+
+.salary-input:focus {
+  border-color: lightblue;
 }
 
 .popup-footer {

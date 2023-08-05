@@ -223,7 +223,7 @@ export default {
   width: 245px;
   padding: 5px;
   top: -18px;
-  right: 32vw;
+  right: 33vw;
 }
 .business-options {
   width: 195px;
@@ -237,7 +237,7 @@ export default {
   padding-top: 5px;
   padding-bottom: 5px;
   top: -12px;
-  right: 5px;
+  right: 0px;
 }
 
 .professionals-options a, .business-options a, .user-options a {

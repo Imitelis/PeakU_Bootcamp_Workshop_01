@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img alt="PeakU logo" src="./assets/logo.png">
     <NavigationBar/>
     <SideBar :expanded="sideBarExpanded" @update:expanded="sideBarExpanded = $event" />
     <SearchBar :expanded="sideBarExpanded" :sticky="isStickyBar" />

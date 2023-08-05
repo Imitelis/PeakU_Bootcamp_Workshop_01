@@ -5,7 +5,7 @@
       </div>
       <div class="job-details">
         <a class="job-title" :href="`/jobs/${jobOffer.id}`" >{{ jobOffer.title }}</a>
-        <span class="job-list" v-for="skill in jobOffer.skills" :key="skill">
+        <span class="skill-list" v-for="skill in jobOffer.skills" :key="skill">
           <span class="job-skill">{{ skill }}</span>
         </span>
         <br/>
@@ -76,6 +76,9 @@
     padding-bottom: 2px;
     padding-left: 6px;
     padding-right: 15px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
   }
 
   .job-offer:hover {
@@ -108,12 +111,13 @@
     top: 12px;
   }
 
-  .job-list {
+  .skill-list {
     display: inline;
     flex-direction: row;
     position: relative;
     top: 6px;
     left: 2vw;
+    word-wrap: break-word;
   }
 
   .job-skill {
@@ -133,7 +137,7 @@
     flex-direction: row;
     margin-top: 24px;
     font-size: 15px;
-    width: 70vw;
+    width: 73vw;
     align-items: center;
   }
 
@@ -145,7 +149,7 @@
   }
 
   .icon-list {
-    text-align: center;
+    text-align: left;
     margin-left: 8px;
     flex-wrap: nowrap;
     padding-top: 4px;
