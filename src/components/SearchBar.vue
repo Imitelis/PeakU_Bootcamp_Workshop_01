@@ -1,0 +1,369 @@
+<template>
+    <div class="search-bar navbar navbar-expand-md navbar-primary" :style="getSearchBarWidth" :class="{ 'stickyBar': sticky }">
+        <div class="navbar-search" id="search">
+            <input type="text" class="search-input py-2" placeholder="Search by role, salary, location, or company">
+            <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search mb-0" viewBox="0 0 16 16"> <path :d="svgdSearch"/></svg></span>
+        </div>
+        <nav class="navbar" :style="getSearchWidth">
+        <ul class="navbar-nav">
+          <li class="nav-item"><button class="nav-button btn btn-outline-light px-2" @click="showAreas" :class="{ 'active': isAreaPopup }"><span class="px-2">Area</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret mb-0" viewBox="0 0 16 16"> <path :d="svgdOptions"/></svg></button></li>
+          <li class="nav-item"><button class="nav-button btn btn-outline-light px-2" @click="showRoles" :class="{ 'active': isRolePopup }"><span class="px-2">Role</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret mb-0" viewBox="0 0 16 16"> <path :d="svgdOptions"/></svg></button></li>
+          <li class="nav-item"><button class="nav-button btn btn-outline-light px-2" @click="showSalaries" :class="{ 'active': isSalaryPopup }"><span class="px-2">Salary</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret mb-0" viewBox="0 0 16 16"> <path :d="svgdOptions"/></svg></button></li>
+          <li class="nav-item"><button class="nav-button btn btn-outline-light px-2" @click="showLocations" :class="{ 'active': isLocationPopup }"><span class="px-2">Location</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret mb-0" viewBox="0 0 16 16"> <path :d="svgdOptions"/></svg></button></li>
+        </ul>
+        </nav>
+        <div v-if="isAreaPopup" class="darkened-background">
+        <div class="popup-search">
+          <div class="popup-header">
+            <img v-bind:src="popupBackground">
+          </div>
+          <span class="popup-title mx-2">Choose a work area <span @click="hideAreas" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
+          <div class="popup-content">
+            <label><input type="checkbox" class="input-checkbox">Accounting & Finance</label>
+            <label><input type="checkbox" class="input-checkbox">Customer service</label>
+            <label><input type="checkbox" class="input-checkbox">Design</label>
+            <label><input type="checkbox" class="input-checkbox">International trade</label>
+            <label><input type="checkbox" class="input-checkbox">Logistics and Transport</label>
+            <label><input type="checkbox" class="input-checkbox">Marketing</label>
+            <label><input type="checkbox" class="input-checkbox">Other</label>
+            <label><input type="checkbox" class="input-checkbox">Recruiting</label>
+            <label><input type="checkbox" class="input-checkbox">Marketing</label>
+            <label><input type="checkbox" class="input-checkbox">Sales</label>
+            <label><input type="checkbox" class="input-checkbox">Technology</label>
+          </div>
+          <div class="popup-footer">
+            <button class="btn btn-outline-secondary btn-block text-gray" @click="hideAreas">Close</button>
+            <button class="btn btn-primary btn-block text-white" @click="hideAreas">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div v-if="isRolePopup" class="darkened-background">
+        <div class="popup-search">
+          <div class="popup-header">
+            <img v-bind:src="popupBackground">
+          </div>
+          <span class="popup-title mx-2">Choose one or more roles <span @click="hideRoles" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
+          <div class="popup-content">
+            <select id="most-like" name="mostliked" class="form-options" required>
+              <option disabled="" selected="" value>All roles</option>
+              <option>Accounting & Finance</option>
+              <option>Customer Service</option>
+              <option>Design</option>
+              <option>International trade</option>
+            </select>
+          </div>
+          <div class="popup-footer">
+            <button class="btn btn-outline-secondary btn-block text-gray" @click="hideRoles">Close</button>
+            <button class="btn btn-block text-white" style="background-color: dodgerblue" @click="hideRoles">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div v-if="isSalaryPopup" class="darkened-background">
+        <div class="popup-search">
+          <div class="popup-header">
+            <img v-bind:src="popupBackground">
+          </div>
+          <span class="popup-title mx-2">Salary range <span @click="hideSalaries" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
+          <div class="popup-content">
+            <select id="most-like" name="mostliked" class="form-options" required>
+              <option disabled="" selected="" value>Currency</option>
+              <option>US Dollar</option>
+              <option>Colombian Peso</option>
+              <option>Chilean Peso</option>
+              <option>Argentinean Peso</option>
+            </select>
+            <input type="number" min="0" max="100000">
+            <input type="number" min="0" max="100000">
+          </div>
+          <div class="popup-footer">
+            <button class="btn btn-outline-secondary btn-block text-gray" @click="hideSalaries">Close</button>
+            <button class="btn btn-block text-white" style="background-color: dodgerblue" @click="hideSalaries">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div v-if="isLocationPopup" class="darkened-background">
+        <div class="popup-search">
+          <div class="popup-header">
+            <img v-bind:src="popupBackground">
+          </div>
+          <span class="popup-title mx-2">Choose a location <span @click="hideLocations" class="popup-close"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-times" viewBox="0 0 16 16"> <path :d="svgdTimes"/></svg></span></span>
+          <div class="popup-content">
+            <select id="most-like" name="mostliked" class="form-options" required>
+              <option disabled="" selected="" value>Unselected</option>
+              <option>Bogota</option>
+              <option>Medellin</option>
+              <option>Buenos Aires</option>
+              <option>Rio de Janeiro</option>
+            </select>
+          </div>
+          <div class="popup-footer">
+            <button class="btn btn-outline-secondary btn-block text-gray" @click="hideLocations">Close</button>
+            <button class="btn btn-block text-white" style="background-color: dodgerblue" @click="hideLocations">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<script>
+export default {
+  name: 'SearchBar',
+  props: ['expanded', 'sticky'],
+  data() {
+    return {
+      popupBackground: require('../assets/images/PopupBackground.png'),
+      svgdSearch: "M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z",
+      svgdOptions: "M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z",
+      svgdTimes: "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z",
+      isAreaPopup: false,
+      isRolePopup: false,
+      isSalaryPopup: false,
+      isLocationPopup: false,
+    }
+  },
+  computed: {
+    getSearchBarWidth() {
+      const collapsedWidth = 'calc(100vw - 215px)';
+      const expandedWidth = 'calc(100vw - 100px)';
+      const expandedLeft = '90px';
+      const collapsedLeft = '205px';
+      return this.expanded ? { width: collapsedWidth, left: collapsedLeft } : { width: expandedWidth, left: expandedLeft };
+    },
+    getSearchWidth() {
+      const expandedLeft = '28vw';
+      const collapsedLeft = '18vw';
+      return this.expanded ? { left: collapsedLeft } : { left: expandedLeft };
+    }
+  },
+  methods: {
+    showAreas() {
+      this.isAreaPopup = true;
+      this.isRolePopup = false;
+      this.isSalaryPopup = false;
+      this.isLocationPopup = false;
+      document.body.style.overflow = 'hidden';
+    },
+    hideAreas() {
+      this.isAreaPopup = false;
+      document.body.style.overflow = 'auto';
+    },
+    showRoles() {
+      this.isAreaPopup = false;
+      this.isRolePopup = true;
+      this.isSalaryPopup = false;
+      this.isLocationPopup = false;
+      document.body.style.overflow = 'hidden';
+    },
+    hideRoles() {
+      this.isRolePopup = false;
+      document.body.style.overflow = 'auto';
+    },
+    showSalaries() {
+      this.isAreaPopup = false;
+      this.isRolePopup = false;
+      this.isSalaryPopup = true;
+      this.isLocationPopup = false;
+      document.body.style.overflow = 'hidden';
+    },
+    hideSalaries() {
+      this.isSalaryPopup = false;
+      document.body.style.overflow = 'auto';
+    },
+    showLocations() {
+      this.isAreaPopup = false;
+      this.isRolePopup = false;
+      this.isSalaryPopup = false;
+      this.isLocationPopup = true;
+      document.body.style.overflow = 'hidden';
+    },
+    hideLocations() {
+      this.isLocationPopup = false;
+      document.body.style.overflow = 'auto';
+    },
+  }
+}
+</script>
+
+<style scoped>
+.search-bar {
+  position: relative;
+  height: 74px;
+  top: -50px;
+  right: 0px;
+  z-index: 1;
+  background-image: url("@/assets/images/SearchBackground.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-bar.stickyBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+  width: 380px;
+  height: 38px;
+  padding-right: 4px;
+  padding-left: 42px;
+  border-radius: 2.5px;
+  margin-left: 15px;
+  border: 0.5px solid rgba(255, 255, 255, 0.6);
+}
+
+.search-input::placeholder {
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.search-icon {
+  position: relative;
+  left: -370px;
+  margin-top: 2px;
+  z-index: 1;
+}
+
+.search-input:focus {
+  outline: none;
+  border-radius: 2.5px;
+  border: 2px solid black;
+}
+
+.navbar {
+  position: auto;
+  left: 24vw;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-item {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.nav-button {
+  margin-left: 6px;
+  border-radius: 15px !important;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 12x;
+  color: white;
+}
+
+.popup-search {
+  background-color: white;
+  color: white;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  top: 15%;
+  left: 30%;
+  right: 30%;
+  z-index: 1;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  width: 498px;
+  overflow: hidden;
+}
+
+.popup-header {
+  position: relative;
+  display: block;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: -2;
+}
+
+.popup-title {
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  z-index: 2;
+  top: -55px;
+  right: -50px
+}
+
+.popup-close {
+  cursor: pointer;
+  margin-left: 100px;
+}
+
+.popup-close:hover {
+  color: rgba(255, 255, 255, 0.6)
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: black;
+  gap: 10px;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 0px;
+  padding-bottom: 16px;
+  margin-top: -16px;
+  margin-bottom: 12px;
+  margin-left: 12px;
+  border-bottom: 1px solid #ccc;
+  line-height: 1.2;
+}
+
+.popup-footer {
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.popup-footer button {
+  margin-left: 12px;
+}
+
+.darkened-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+  overflow: hidden;
+}
+
+@media (max-width: 980px) {
+  .search-bar {
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .navbar {
+    align-items: center;
+    left: -1vw;
+  }
+
+  .navbar-nav {
+    margin-left: -37vw;
+  }
+
+  .professionals-options, .business-options {
+    display: none;
+  }
+}
+
+</style>
