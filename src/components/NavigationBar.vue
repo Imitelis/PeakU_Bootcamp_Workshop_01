@@ -55,7 +55,7 @@
           </div>
           <div class="popup-content">
             <button class="btn btn-outline-secondary btn-block text-gray">Spanish</button>
-            <button class="btn btn-outline-secondary btn-block text-gray" autofocus>English</button>
+            <button class="btn btn-outline-secondary btn-block text-gray">English</button>
             <button class="btn btn-outline-secondary btn-block text-gray">Portuguese</button>
           </div>
         </div>
