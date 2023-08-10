@@ -185,8 +185,12 @@ export default {
   text-decoration: none;
   font-size: 14px;
 }
+
+.footer-option a:hover {
+  text-decoration: underline;
+}
 .contact-title {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .footer-contact {

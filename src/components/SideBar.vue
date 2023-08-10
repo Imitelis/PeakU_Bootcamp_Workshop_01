@@ -85,7 +85,7 @@ export default {
     padding-bottom: 4px;
     padding-left: 6px;
     padding-right: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .nav-item a {
