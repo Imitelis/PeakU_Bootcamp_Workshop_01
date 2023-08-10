@@ -169,6 +169,7 @@ export default {
   height: 0;
   overflow: hidden;
 }
+    
 .navigation-bar {
   position: absolute;
   height: 70px;
