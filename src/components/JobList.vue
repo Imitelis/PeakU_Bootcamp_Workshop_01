@@ -94,7 +94,6 @@ export default {
 </script>
 
 <style scoped>
-
 .job-offers {
   margin-top: 44px;
   margin-bottom: 50px;
@@ -214,5 +213,4 @@ export default {
     min-height: 800px;
   }
 }
-
 </style>
