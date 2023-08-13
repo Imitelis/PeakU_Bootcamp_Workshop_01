@@ -164,7 +164,6 @@ export default {
 </script>
 
 <style scoped>
-
 .pushed-up {
   height: 0;
   overflow: hidden;
