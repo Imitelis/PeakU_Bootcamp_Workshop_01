@@ -63,7 +63,7 @@
     height: auto;
     min-height: 110px;
     margin-bottom: 16px;
-    background-color: whitesmoke;
+    background-color: white;
     display: flex;
     border: 2px;
     font-size: 18px;

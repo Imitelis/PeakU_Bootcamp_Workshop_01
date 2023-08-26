@@ -106,7 +106,7 @@ export default {
     border-radius: 50%;
     position: absolute;
     bottom: 36px;
-    left: 1.5vw;
+    left: 1.2vw;
     margin-top: 24px;
     margin-left: 60px;
     border: 1px solid white;
