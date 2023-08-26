@@ -2,8 +2,8 @@
   <div id="app">
     <img alt="PeakU logo" src="./assets/logo.png">
     <NavigationBar/>
-    <SideBar :expanded="sideBarExpanded" @update:expanded="sideBarExpanded = $event" />
     <SearchBar :expanded="sideBarExpanded" :sticky="isStickyBar" />
+    <SideBar :expanded="sideBarExpanded" @update:expanded="sideBarExpanded = $event" />
     <JobList :expanded="sideBarExpanded" />
   </div>
 </template>

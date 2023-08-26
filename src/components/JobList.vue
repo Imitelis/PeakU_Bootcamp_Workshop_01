@@ -85,9 +85,9 @@ export default {
   },
   computed: {
     getJobListWidth() {
-      const collapsedWidth = '84vw';
-      const expandedWidth = '93vw';
-      return this.expanded ? { width: collapsedWidth } : { width: expandedWidth };
+      const collapsedWidth =  '84vw'; // '87.2vw';
+      const expandedWidth =  '93vw'; // '94.4vw';
+      return this.expanded ? { left: '205px', width: collapsedWidth } : { left: '90px', width: expandedWidth };
     },
   }
 }
@@ -102,8 +102,7 @@ export default {
 .job-list {
   position: absolute;
   margin-top: 118px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  right: 0;
+  right: 0px;
   top: 0px;
 }
 

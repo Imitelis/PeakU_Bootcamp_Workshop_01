@@ -131,7 +131,8 @@ export default {
   width: 205px;
 }
 .expanded .side-button {
-    left: 10.5vw;
+    position: absolute;
+    margin-left: 175px;
 }
 
 .expanded .nav-item a {
