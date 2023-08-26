@@ -1,4 +1,4 @@
-# PeakU Bootcamp - Week 01 - PeakU Jobs
+# PeakU Bootcamp - Workshop 01 - PeakU Jobs
 
 ## Project setup
 ```
