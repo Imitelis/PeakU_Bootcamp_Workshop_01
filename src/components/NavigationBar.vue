@@ -223,19 +223,21 @@ export default {
   width: 245px;
   padding: 5px;
   top: -18px;
-  right: 33vw;
+  right: 420px;
 }
 .business-options {
   width: 195px;
   padding: 5px;
   top: -18px;
-  right: 22vw;
+  right: 280px;
 }
 
 .user-options {
   width: 185px;
   padding-top: 5px;
   padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
   top: -12px;
   right: 0px;
 }
@@ -246,6 +248,7 @@ export default {
   text-decoration: none;
   align-items: left;
   text-align: left;
+  width: 100%;
   padding-left: 22px;
   padding-top: 4px;
   padding-bottom: 4px;

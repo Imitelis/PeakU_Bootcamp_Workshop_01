@@ -4,7 +4,7 @@
             <input type="text" class="search-input py-2" placeholder="Search by role, salary, location, or company">
             <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search mb-0" viewBox="0 0 16 16"> <path :d="svgdSearch"/></svg></span>
         </div>
-        <nav class="navbar" :style="getSearchWidth">
+        <nav class="navbar-items" :style="getSearchWidth">
         <ul class="navbar-nav">
           <li class="nav-item"><button class="nav-button btn btn-outline-light px-2" @click="showAreas" :class="{ 'active': isAreaPopup }"><span class="px-2">Area</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret mb-0" viewBox="0 0 16 16"> <path :d="svgdOptions"/></svg></button></li>
           <li class="nav-item"><button class="nav-button btn btn-outline-light px-2" @click="showRoles" :class="{ 'active': isRolePopup }"><span class="px-2">Role</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-caret mb-0" viewBox="0 0 16 16"> <path :d="svgdOptions"/></svg></button></li>
@@ -208,6 +208,7 @@ export default {
   background-size: cover;
   background-position: center;
   padding-left: 16px;
+  padding-right: 16px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -224,12 +225,12 @@ export default {
 }
 
 .search-input {
-  width: 380px;
+  width: 480px;
   height: 38px;
   padding-right: 4px;
   padding-left: 42px;
   border-radius: 2.5px;
-  margin-left: 15px;
+  margin-left: 8px;
   border: 0.5px solid rgba(255, 255, 255, 0.6);
 }
 
@@ -240,7 +241,7 @@ export default {
 
 .search-icon {
   position: relative;
-  left: -370px;
+  left: -470px;
   margin-top: 2px;
   z-index: 1;
 }
@@ -251,9 +252,11 @@ export default {
   border: 2px solid black;
 }
 
-.navbar-nav {
+.navbar-items {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  margin-left: 460px;
 }
 
 .nav-item {
@@ -277,9 +280,9 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  top: 15%;
-  left: 30%;
-  right: 30%;
+  top: 20vh;
+  left: 35vw;
+  right: 35vw;
   z-index: 1;
   border: 1px solid rgba(0, 0, 0, 0.6);
   border-radius: 5px;
@@ -404,13 +407,21 @@ export default {
     flex-direction: column;
   }
 
-  .navbar {
+  .navbar-items {
     align-items: center;
     left: -1vw;
   }
 
   .navbar-nav {
     margin-left: -37vw;
+  }
+
+  .navbar-items {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-left: 160px;
+    margin-top: 50px;
   }
 
   .professionals-options, .business-options {

@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import JobList from './components/JobList.vue'
 import NavigationBar from './components/NavigationBar.vue'
 import SearchBar from './components/SearchBar.vue'
 import SideBar from './components/SideBar.vue'
+import JobList from './components/JobList.vue'
 
 export default {
   name: 'App',
