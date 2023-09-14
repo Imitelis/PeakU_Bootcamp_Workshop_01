@@ -1,5 +1,5 @@
 <template>
-    <div class="search-bar navbar navbar-expand-md navbar-primary" :style="getSearchBarWidth" :class="{ 'stickyBar': sticky }">
+    <div class="search-bar navbar navbar-expand navbar-primary" :style="getSearchBarWidth" :class="{ 'stickyBar': sticky }">
         <div class="navbar-search" id="search">
             <input type="text" class="search-input py-2" placeholder="Search by role, salary, location, or company">
             <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search mb-0" viewBox="0 0 16 16"> <path :d="svgdSearch"/></svg></span>
@@ -212,6 +212,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-between;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -255,8 +256,6 @@ export default {
 .navbar-items {
   display: flex;
   flex-direction: row;
-  position: absolute;
-  margin-left: 460px;
 }
 
 .nav-item {
@@ -399,33 +398,21 @@ export default {
   overflow: hidden;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
   .search-bar {
     height: 100px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
   }
 
-  .navbar-items {
-    align-items: center;
-    left: -1vw;
-  }
-
   .navbar-nav {
-    margin-left: -37vw;
+    position: fixed;
+    left: 24vw;
   }
 
   .navbar-items {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    margin-left: 160px;
+    margin-left: 60px;
     margin-top: 50px;
-  }
-
-  .professionals-options, .business-options {
-    display: none;
   }
 }
 
